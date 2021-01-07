@@ -1,0 +1,14 @@
+.page__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.page__btn{
+    padding: 15px;
+    margin: 10px;
+    background: steelblue;
+    border-radius: 5px;
+}
+

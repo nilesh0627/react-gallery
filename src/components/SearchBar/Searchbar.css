@@ -10,6 +10,11 @@
     padding: 10px 15px;
 }
 
+.searchbar > h2{
+    color: steelblue;
+    margin-top: 15px;
+}
+
 .searchbar input:focus > .searchbar__input{
     border: 2px solid steelblue;
     outline: 2px solid chartreuse;

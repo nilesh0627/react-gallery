@@ -2,7 +2,6 @@ import React from 'react'
 import Image from './image'
 import './image.css'
 function ImageList({images}){
-    console.log(images)
     return (
         <div className="container">
             <h2>Results</h2>

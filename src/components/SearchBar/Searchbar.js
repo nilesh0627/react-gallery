@@ -24,7 +24,7 @@ class Searchbar extends React.Component{
     render(){
         return (
             <form onSubmit={this.onFormSubmit} className="searchbar">
-                <h2>Image Search</h2>
+                <h2>Image Gallery</h2>
                 <div className="searchbar__input">
                     <input type="text" name="text" value={this.state.text} placeholder="Search Images" onChange={this.handleChange}/>
                     <div onClick={this.onFormSubmit} className="searchbar__icon">

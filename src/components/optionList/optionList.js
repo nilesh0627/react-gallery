@@ -7,7 +7,7 @@ function OptionList({onSearchSubmit}){
         <div className="option__container">
             {optionArray.map((option)=>{
                 return (
-                    <button onClick={()=>onSearchSubmit(option)} className="option__btn">{option}</button>
+                    <button key={option} onClick={()=>onSearchSubmit(option)} className="option__btn">{option}</button>
                 )
             })}
         </div>

@@ -1,31 +1,36 @@
 import React,{useState} from 'react'
 import './App.css';
-import axios from 'axios'
+import unsplash from './components/api/unsplash'
 import Searchbar from './components/SearchBar/Searchbar'
 import ImageList from './components/imageList/ImageList'
 import OptionList from './components/optionList/optionList'
-import {access_key} from './unsplashconfig'
+import Pagination from './components/pagination/Pagination'
 
 function App() {
   const [images,setImages]=useState([])
-  const searchImages= async (text)=>{
-   const response=await axios.get('https://api.unsplash.com/search/photos',{
-      params:{
-        query:text
-      },
-      headers:{
-        Authorization:`Client-ID ${access_key}`
-      }
-    });
-    setImages(response.data.results)
-
+  const [pages,setPages]=useState(0)
+  const [text,setText]=useState('sun')
+  const searchImages= async (text,page=1)=>{
+        setText(text)
+        const response=await unsplash.get('search/photos',{
+          params:{
+            query:text,
+            per_page:20,
+            page:page
+          }
+        })
+        console.log(response)
+        setImages(response.data.results)
+        setPages(response.data.total_pages)
+        window.scrollTo(0,0)
   }
   
   return (
     <div className="App">
-      <Searchbar onSearchSubmit={searchImages}/>
-      <OptionList onSearchSubmit={searchImages}/>
+      <Searchbar onSearchSubmit={searchImages} />
+      <OptionList onSearchSubmit={searchImages} />
       <ImageList images={images}/>
+      <Pagination pages={pages} text={text} onSearchSubmit={searchImages}/>
     </div>
   );
 }
