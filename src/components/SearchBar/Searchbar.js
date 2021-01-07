@@ -3,7 +3,7 @@ import './Searchbar.css'
 import SearchIcon from '@material-ui/icons/Search';
 class Searchbar extends React.Component{
     state={
-        text:''
+        text:'sun'
     }
     handleChange=(event)=>{
         this.setState({
@@ -11,9 +11,15 @@ class Searchbar extends React.Component{
         })
     }
 
+    componentDidMount(){
+        this.props.onSearchSubmit(this.state.text)
+        this.setState({text:''})
+    }
+
     onFormSubmit=(event)=>{
         event.preventDefault()
         this.props.onSearchSubmit(this.state.text)
+        this.setState({text:''})
     }
     render(){
         return (

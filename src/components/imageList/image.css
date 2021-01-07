@@ -27,7 +27,6 @@
 .image img{
     display: block;
     transition: all 0.4s;
-    transform: scale(1);
 }
 
 .image img:hover{

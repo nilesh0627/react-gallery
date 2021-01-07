@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios'
 import Searchbar from './components/SearchBar/Searchbar'
 import ImageList from './components/imageList/ImageList'
+import OptionList from './components/optionList/optionList'
 import {access_key} from './unsplashconfig'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
   return (
     <div className="App">
       <Searchbar onSearchSubmit={searchImages}/>
+      <OptionList onSearchSubmit={searchImages}/>
       <ImageList images={images}/>
     </div>
   );
