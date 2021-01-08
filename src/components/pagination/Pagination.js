@@ -2,22 +2,41 @@ import React,{useState,useEffect} from 'react'
 import './pagination.css'
 function Pagination({pages,text,onSearchSubmit}){
     const [pageList,setPageList]=useState([])
-    const [active,setActive]=useState(1)
-    // const [firstPage,setFirstPage]=useState(1)
-    // const [lastPage,setLastPage]=useState(6)
-        useEffect(() => {
-            // if(pages>7){
-            //     setPageList([1,2,3,4,'...',pages])
-            // }
-            const arr1=[]
-            for(let i=active;i<active+6;i++)
+    const [active,setActive]=useState(null)
+    const [firstPage,setFirstPage]=useState(1)
+    const [lastPage,setLastPage]=useState(6)
+        useEffect(()=>{
+            const arr1=['Previous']
+            for(let i=firstPage;i<=lastPage;i++){
                 arr1.push(i)
-            setPageList(arr1)    
-        }, [active])
+            }
+            arr1.push('Next')
+            setPageList(arr1)
+        },[firstPage,lastPage])
 
         const handleClick=(page)=>{
-            setActive(page)
-            onSearchSubmit(text,active)
+            console.log('page clicked',page)
+            if(page==='Previous'){
+                setActive(page-1)
+            }
+
+            else if(page==='Next'){
+                setActive(page+1)
+            }
+            else if(page===lastPage)
+            {
+                setFirstPage(lastPage+1)
+                setLastPage(lastPage+6)
+                setActive(page)
+            }
+
+            else{
+                setActive(page)
+                console.log('Active Page',active)
+            }
+            //why lagging between Active page and clicked page by 1
+            //temporarily removed the bug by directly sending the clicked page number
+            onSearchSubmit(text,page)
         }
         return (
             <div className="page__container">
